@@ -1,0 +1,20 @@
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        
+        Needs some work on optimization. 
+        """
+        strs_tokenized_len = [len(x) for x in strs]
+        strs_tokenized_len.sort()
+        min_len = strs_tokenized_len[0]
+        if min_len <= 0:
+            return ''
+        prefix = ''
+        for i in range(min_len):
+            prefix_lst = [x[i] for x in strs]
+            if len(set(prefix_lst)) != 1:
+                break
+            prefix += str(prefix_lst[0])
+        return prefix
