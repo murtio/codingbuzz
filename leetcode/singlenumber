@@ -1,0 +1,17 @@
+class Solution(object):
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        ne = []
+        ne_twice = []
+        for i in nums:
+            if i in ne:
+                ne.remove(i)
+            elif i in ne_twice:
+                continue
+            else:
+                ne.append(i)
+                ne_twice.append(i)
+        return ne[0]
