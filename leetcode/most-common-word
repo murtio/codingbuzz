@@ -1,0 +1,23 @@
+class Solution(object):
+    def mostCommonWord(self, paragraph, banned):
+        """
+        :type paragraph: str
+        :type banned: List[str]
+        :rtype: str
+        """
+        token_par = paragraph.replace('!', ' ').replace('?', ' ').replace('\'', ' ').replace(',', ' ').replace(';', ' ').replace('.', ' ').split()
+        unbanned = []
+        for w in token_par: # O(n)
+            w = w.lower()
+            if w in banned: # O(m)
+                continue
+            unbanned.append(w)
+        unbanned_set = list(set(unbanned))
+        count_list = [unbanned.count(x) for x in unbanned_set]
+        max_ind = count_list.index(max(count_list))
+        return unbanned_set[max_ind]
+
+# Runtime: 18 ms, faster than 98.52% of Python online submissions for Most Common Word.
+# Memory Usage: 13.7 MB, less than 13.35% of Python online submissions for Most Common Word.
+# Comment: my sol achieves great performance in running time but sacrificing memory. While solving I was keep in mind to use as the built-in pyhton methods whenever it's possible.
+# Two notes on opt: 1) using lower() on the paragraph level is less optimized than using it on word level inside the loop. 2) I think the lines 15-17 can be included inside the loops and thus reducing memory usage by assigning less variables.
