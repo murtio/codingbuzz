@@ -1,0 +1,15 @@
+class Solution(object):
+    def findNumbers(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        Sol 1
+        count = 0
+        for i in nums:
+            if len(str(i))%2 == 0:
+                count += 1
+        return count
+
+# It's mediocre sol compared to the others. However, the other proposed solutions differ just a little bit by avoiding casting to str. So instead of casting to str, they use a helper fun that iterat over the digits of the int input and trigger a boolean if the number of digits is even.
+# Took me 2m.
