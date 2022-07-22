@@ -1,0 +1,34 @@
+class Solution(object):
+    def countAsterisks(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        bar_count = 0
+        a_count = 0
+        for c in s:
+            if c == '|':
+                bar_count += 1
+                if bar_count == 2:
+                    bar_count = 0
+            elif c == '*' and bar_count < 1:
+                a_count += 1
+        return a_count
+
+# Runtime: 36 ms, faster than 33.33% of Python online submissions for Count Asterisks.
+# Memory Usage: 13.5 MB, less than 62.26% of Python online submissions for Count Asterisks.
+# It took me 5m.
+
+      # sol2
+      bar_count = False
+      a_count = 0
+      for c in s:
+          if c == '|':
+              bar_count = not bar_count
+          elif c == '*' and not bar_count:
+              a_count += 1
+      return a_count
+      
+# Runtime: 26 ms, faster than 70.13% of Python online submissions for Count Asterisks.
+# Memory Usage: 13.4 MB, less than 62.26% of Python online submissions for Count Asterisks.
+# it took me 10m.
