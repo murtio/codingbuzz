@@ -1,0 +1,33 @@
+class Solution(object):
+    def checkXMatrix(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: bool
+        """
+        #sol 1
+        # row_len = len(grid[0])
+        # for i in range(len(grid)):
+        #     for j in range(row_len):
+        #         if j==i: 
+        #             if grid[i][j] == 0:
+        #                 return False
+        #         elif j == row_len-i-1:
+        #             if grid[i][j] == 0:
+        #                 return False
+        #         else:
+        #             if grid[i][j] != 0:
+        #                 return False
+        # return True
+        
+        #sol 2
+        row_len = len(grid)
+        for i in range(row_len):
+            for j in range(row_len):
+                is_dig = j==i or j == row_len-i-1
+                is_zero = bool(grid[i][j])
+                if any([is_dig, is_zero]) and not all([is_dig, is_zero]):
+                    return False
+        return True
+# Runtime: 226 ms, faster than 93.55% of Python online submissions for Check if Matrix Is X-Matrix.
+# Memory Usage: 14.5 MB, less than 41.69% of Python online submissions for Check if Matrix Is X-Matrix.
+# The first sol took me 10m; the second took me 60m. My approach was to draw the logic table for the two boolean variables. Second, realizing that it's a reverse xor operation. Third, look up an optimized way to perform xor. This approach results in improvement in mainly the runtime. Though the complexity is still the same, O(n^2), the improvement is due to reducing the number of boolean operations performed inside the loop. Surprisingly, the Python any() and all() contributed a lot.
